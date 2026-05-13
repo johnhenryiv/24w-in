@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOE | KNEE | SEE — About Tony Cu | 24W.IN</title>
+  <meta name="description" content="Tony Cu is a systems-minded knowledge management architect and research-driven builder based in Washington, DC." />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:               #F5F7FB;
+      --surface:          #FFFFFF;
+      --surface-alt:      #EEF2FF;
+      --text-primary:     #1E293B;
+      --text-secondary:   #64748B;
+      --text-faint:       #94A3B8;
+      --border:           #CBD5E1;
+      --divider:          #E2E8F0;
+      --link:             #2563EB;
+      --link-hover:       #1D4ED8;
+      --accent:           #C026D3;
+      --accent-soft:      #F5D0FE;
+      --cta-primary-bg:   #2563EB;
+      --cta-primary-text: #FFFFFF;
+      --cta-primary-hover:#1D4ED8;
+      --cta-secondary-bg: #FFFFFF;
+      --cta-secondary-text:#2563EB;
+      --cta-secondary-border:#2563EB;
+      --cta-secondary-hover-bg:#EFF6FF;
+      --focus-ring:       #C026D3;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; border-bottom: 1px solid var(--divider); }
+    section:last-of-type { border-bottom: none; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--divider);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .wordmark {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+    nav .wordmark span { color: var(--accent); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    nav ul li a:hover { color: var(--link); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--divider);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 .divider { color: var(--accent); margin: 0 0.2em; }
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-intro {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+    }
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .btn-primary {
+      background: var(--cta-primary-bg);
+      color: var(--cta-primary-text);
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.18s;
+    }
+    .btn-primary:hover {
+      background: var(--cta-primary-hover);
+      color: var(--cta-primary-text);
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background: var(--cta-secondary-bg);
+      color: var(--cta-secondary-text);
+      border: 1.5px solid var(--cta-secondary-border);
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: background 0.18s;
+    }
+    .btn-secondary:hover {
+      background: var(--cta-secondary-hover-bg);
+      text-decoration: none;
+    }
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .link-row a {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .link-row a:hover { color: var(--accent); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    p { color: var(--text-secondary); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── TOOLS GRID ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .tool-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .tool-card p {
+      font-size: 0.825rem;
+      color: var(--text-faint);
+      margin: 0;
+    }
+
+    /* ── PROJECT CARDS ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: box-shadow 0.18s;
+    }
+    .project-card:hover { box-shadow: 0 4px 24px rgba(37,99,235,0.08); }
+    .project-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .project-card .subtitle {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .project-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .project-card a {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--link);
+    }
+    .project-card a:hover { color: var(--accent); }
+
+    /* ── BIO ── */
+    .bio-block {
+      background: var(--surface-alt);
+      border-radius: 14px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .contact-links a {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .contact-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+    footer a { color: var(--text-faint); }
+    footer a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <span class="wordmark">TOE<span>|</span>KNEE<span>|</span>SEE</span>
+      <ul>
+        ><a href="#about">About</a></li>
+        ><a href="#tools">Tools</a></li>
+        ><a href="#projects">Projects</a></li>
+        ><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">TOE | KNEE | SEE</p>
+      <h1>Tony<span class="divider">·</span>Cu<span class="divider">·</span>Anderson</h1>
+      <p class="hero-sub">About Tony Cu — tools, projects, and how he works</p>
+      <p class="hero-intro">
+        Tony Cu builds systems that turn information into clarity, action, and momentum.
+        He works at the intersection of knowledge management, research, workflow design,
+        and practical implementation — helping complex ideas become more usable,
+        organized, and sustainable over time.
+      </p>
+      <div class="cta-group">
+        <a href="#projects" class="btn-primary">View Selected Projects</a>
+        <a href="#contact" class="btn-secondary">Book Time</a>
+      </div>
+      <div class="link-row">
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/johnhenryiv" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://24w.in" target="_blank" rel="noopener">24W.IN</a>
+        <a href="mailto:tonyc.anderson@gmail.com">Email</a>
+        <a href="#contact">Calendar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <h2>Introduction</h2>
+      <p>
+        Tony Cu is a systems-minded knowledge management architect and research-driven
+        builder based in Washington, DC. His work blends strategy, organization,
+        documentation, and technology to help people and projects operate with more
+        clarity, structure, and intention.
+      </p>
+      <p>
+        He is especially interested in workflows that hold up in real life — systems
+        that reduce friction, improve retrieval, support decision-making, and remain
+        maintainable over time. That includes knowledge environments, documentation
+        standards, automation layers, and digital tools that support thoughtful
+        execution rather than noise.
+      </p>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="container">
+      <p class="section-label">Tools</p>
+      <h2>How He Works</h2>
+      <p>
+        Tony works across a practical stack of tools for thinking, organizing, and
+        building. His approach is structure-first and implementation-aware — focused
+        on systems that are clear, auditable, and durable enough to support ongoing
+        work without collapsing under complexity.
+      </p>
+      <div class="tools-grid">
+        <div class="tool-card">
+          <h3>Knowledge Systems</h3>
+          <p>Obsidian, Notion, Johnny Decimal, metadata frameworks, documentation standards</p>
+        </div>
+        <div class="tool-card">
+          <h3>Research & Drafting</h3>
+          <p>AI research tools, Claude, structured writing workflows, prompt engineering</p>
+        </div>
+        <div class="tool-
