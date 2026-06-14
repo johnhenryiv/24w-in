@@ -1,0 +1,32 @@
+{
+  "name": "@24w/ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "24W.IN component library built on design tokens",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./stamp": "./src/components/Stamp.tsx",
+    "./stamp-card": "./src/components/StampCard.tsx",
+    "./button": "./src/components/Button.tsx",
+    "./nav": "./src/components/Nav.tsx",
+    "./footer": "./src/components/Footer.tsx"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@24w/tokens": "workspace:*",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "build": "echo 'components package (TSX only)'",
+    "typecheck": "echo 'component validation'"
+  }
+}

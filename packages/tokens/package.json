@@ -1,0 +1,27 @@
+{
+  "name": "@24w/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "24W.IN design tokens — canonical CSS variables and JS exports",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    },
+    "./tokens": {
+      "import": "./src/tokens.json",
+      "require": "./src/tokens.json"
+    },
+    "./css": "./src/tokens.css",
+    "./css/type": "./src/colors_and_type.css"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "echo 'tokens package (CSS only)'",
+    "typecheck": "echo 'no ts files to check'"
+  }
+}

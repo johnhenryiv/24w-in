@@ -1,0 +1,206 @@
+/* ============================================================
+   24W.IN — DESIGN TOKENS  ·  v1.0  ·  2026-05-29
+   ------------------------------------------------------------
+   Canonical source of truth for the 24W "Oversized Label"
+   design system. Every template, component, and document
+   imports these variables — never hard-code a hex or size.
+
+   PROVENANCE
+   - Derived from 24w-design-guidebook.html (the Stamp pattern)
+     and 24win-brand-toolkit.html (the live site + cube).
+   - Reconciled one conflict: the guidebook called the primary
+     accent "magenta #d946a8"; the toolkit called it
+     "primary #e8006b". We adopt #e8006b as --brand (the more
+     developed file) and keep #d946a8 as --brand-legacy so old
+     guidebook markup still maps cleanly.
+   - Light theme + AA contrast tuning informed by the
+     A24 × Braille Institute PDF (accessibility-first intent).
+   ============================================================ */
+
+/* ---- @FONT-FACE — self-hosted brand families --------------
+   These live here (the canonical global) so the design-system
+   compiler resolves --font-display / --font-body / --font-body-a11y
+   to real, present font files. The TTFs ship in /fonts.
+   ----------------------------------------------------------- */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('fonts/DMSans-Variable.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  src: url('fonts/AtkinsonHyperlegibleNext-Variable.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- TYPE FAMILIES -------------------------------------- */
+  /* Display = oversized stamps & headings. Body = everything read small. */
+  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --font-body:    'DM Sans', 'Inter', 'Helvetica Neue', sans-serif;
+  /* Optional accessible body track (from the A24×Braille PDF). */
+  --font-body-a11y: 'Atkinson Hyperlegible Next', var(--font-body);
+  --font-mono:    'Courier New', ui-monospace, monospace;
+
+  /* ---- TYPE SCALE (fluid clamp) --------------------------- */
+  /* Preferred term wrapped in calc() so the token parser reads it
+     as a length function, not a phantom font-family fallback. */
+  --text-xs:    clamp(0.75rem, calc(0.70rem + 0.25vw), 0.875rem);
+  --text-sm:    clamp(0.875rem, calc(0.80rem + 0.35vw), 1rem);
+  --text-base:  clamp(1rem, calc(0.95rem + 0.25vw), 1.125rem);
+  --text-lg:    clamp(1.125rem, calc(1.00rem + 0.75vw), 1.5rem);
+  --text-xl:    clamp(1.5rem, calc(1.20rem + 1.25vw), 2.25rem);
+  --text-2xl:   clamp(2rem, calc(1.20rem + 2.50vw), 3.5rem);
+  --text-3xl:   clamp(2.5rem, calc(1.00rem + 4.00vw), 5rem);
+  --text-hero:  clamp(3rem, calc(0.50rem + 7.00vw), 8rem);
+  --text-stamp: clamp(4rem, calc(2.00rem + 10.0vw), 12rem);
+
+  /* ---- SPACING — FIBONACCI SCALE -------------------------- */
+  /* On-brand AND functional: the sequence is the spacing system.
+     8 · 13 · 21 · 34 · 55 · 89 px = the live Fibonacci stages. */
+  --space-1:  0.25rem;  /*  4px  — hairline gaps      */
+  --space-2:  0.5rem;   /*  8px  — F · base unit      */
+  --space-3:  0.8125rem;/* 13px  — F                  */
+  --space-4:  1rem;     /* 16px  — 2x base (common)   */
+  --space-5:  1.3125rem;/* 21px  — F                  */
+  --space-6:  1.5rem;   /* 24px                       */
+  --space-8:  2.125rem; /* 34px  — F                  */
+  --space-10: 2.5rem;   /* 40px                       */
+  --space-12: 3.4375rem;/* 55px  — F                  */
+  --space-16: 4rem;     /* 64px                       */
+  --space-20: 5.5625rem;/* 89px  — F · widest rhythm  */
+  --space-24: 6rem;
+
+  /* ---- RADII ---------------------------------------------- */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-full: 9999px;
+
+  /* ---- MOTION --------------------------------------------- */
+  --transition-i: 180ms cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */ /* interactive */
+  --transition-s: 600ms cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */ /* scene/reveal */
+
+  /* ---- LAYOUT WIDTHS -------------------------------------- */
+  --content-wide:    1280px;
+  --content-default: 960px;
+
+  /* ---- STAMP OPACITY RANGE (Rule 02) ---------------------- */
+  /* Stamps are transparent tints, never solid. 15-25%. */
+  --stamp-opacity-min: 0.13; /* @kind other */
+  --stamp-opacity-max: 0.25; /* @kind other */
+}
+
+/* ============================================================
+   THEME — DARK (canonical / default)
+   ============================================================ */
+[data-theme="dark"] {
+  /* Surfaces (warm near-black) */
+  --bg:          #0e0d0c;
+  --surface:     #141312;
+  --surface-2:   #1a1917;
+  --surface-3:   #201f1d;
+  --surface-off: #1f1e1c;
+  --divider:     #2e2d2b;
+  --border:      rgba(255, 255, 255, 0.10);
+
+  /* Text */
+  --text:       #e8e6e3;
+  --text-muted: #8a8885;  /* lifted from #7a7876 to clear AA at body size */
+  --text-faint: #5a5957;  /* decorative only — not for reading copy */
+  --text-inv:   #0e0d0c;
+
+  /* Brand accent (primary) */
+  --brand:        #e8006b;
+  --brand-hover:  #ff1a7e;
+  --brand-legacy: #d946a8; /* guidebook's original "magenta" */
+  --brand-glow:   rgba(232, 0, 107, 0.30);
+
+  /* Category accents — used as SIGNAL, not decoration.
+     Each maps to one stamp "mode". */
+  --c-number:  #e8006b; /* Numbers / Concepts  (brand) */
+  --c-verb:    #3b82f6; /* Action verbs               */
+  --c-project: #d4a017; /* Project names              */
+  --c-place:   #22c55e; /* Places                     */
+  --c-name:    #a855f7; /* People / initials          */
+  --c-tool:    #0ea5e9; /* Tools / tech               */
+
+  /* 15-25% tints for stamp fills (precomputed) */
+  --c-number-dim:  rgba(232, 0, 107, 0.20);
+  --c-verb-dim:    rgba(59, 130, 246, 0.20);
+  --c-project-dim: rgba(212, 160, 23, 0.20);
+  --c-place-dim:   rgba(34, 197, 94, 0.18);
+  --c-name-dim:    rgba(168, 85, 247, 0.18);
+  --c-tool-dim:    rgba(14, 165, 233, 0.18);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.60);
+  --glow:      0 0 40px var(--brand-glow);
+}
+
+/* ============================================================
+   THEME — LIGHT (AA-tuned alternate)
+   Recalibrated per Guidebook Rule 04: light is its own system,
+   not an inversion. Accents darkened to hold contrast on light.
+   ============================================================ */
+[data-theme="light"] {
+  --bg:          #f5f4f0;
+  --surface:     #faf9f6;
+  --surface-2:   #ffffff;
+  --surface-3:   #efedea;
+  --surface-off: #eeece8;
+  --divider:     #d8d6d1;
+  --border:      rgba(20, 19, 18, 0.12);
+
+  --text:       #1a1917;
+  --text-muted: #5c5a57;  /* AA on light surfaces at body size */
+  --text-faint: #9a9894;
+  --text-inv:   #f5f4f0;
+
+  --brand:        #c1005a;  /* darkened for AA on light */
+  --brand-hover:  #e8006b;
+  --brand-legacy: #b13d88;
+  --brand-glow:   rgba(193, 0, 90, 0.20);
+
+  --c-number:  #c1005a;
+  --c-verb:    #1d4ed8;
+  --c-project: #9a7400;
+  --c-place:   #15803d;
+  --c-name:    #7e22ce;
+  --c-tool:    #0369a1;
+
+  --c-number-dim:  rgba(193, 0, 90, 0.12);
+  --c-verb-dim:    rgba(29, 78, 216, 0.12);
+  --c-project-dim: rgba(154, 116, 0, 0.14);
+  --c-place-dim:   rgba(21, 128, 61, 0.12);
+  --c-name-dim:    rgba(126, 34, 206, 0.12);
+  --c-tool-dim:    rgba(3, 105, 161, 0.12);
+
+  --shadow-sm: 0 1px 2px rgba(40, 38, 34, 0.06);
+  --shadow-md: 0 4px 24px rgba(40, 38, 34, 0.10);
+  --shadow-lg: 0 12px 48px rgba(40, 38, 34, 0.14);
+  --glow:      0 0 30px var(--brand-glow);
+}
+
+/* Honor user motion preference everywhere (PDF accessibility rule). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
