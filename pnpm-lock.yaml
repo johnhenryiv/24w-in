@@ -15,6 +15,37 @@ importers:
         specifier: ^5.5.4
         version: 5.9.3
 
+  apps/root:
+    dependencies:
+      '@24w/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
+      '@24w/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^14.2.0
+        version: 14.2.35(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.7
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.7(react@19.2.7)
+    devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.19.43
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.17)
+      typescript:
+        specifier: ^5.5.4
+        version: 5.9.3
+
   apps/tony:
     dependencies:
       '@24w/tokens':
