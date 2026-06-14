@@ -39,7 +39,9 @@ export function Button({
   const variantStyles: Record<string, React.CSSProperties> = {
     primary: {
       backgroundColor: 'var(--brand)',
-      color: 'var(--text-inv)',
+      // on-accent foreground (light) — white-on-magenta ≈ 4.53:1 clears AA.
+      // Was --text-inv (#0e0d0c near-black) = 4.29:1, which failed AA.
+      color: 'var(--on-brand)',
     },
     ghost: {
       backgroundColor: 'transparent',

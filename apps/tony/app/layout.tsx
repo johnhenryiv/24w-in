@@ -53,6 +53,19 @@ export default function RootLayout({
           }}
         />
         <meta charSet="utf-8" />
+        {/*
+          LCP fix: preload the Bebas Neue display face. The LCP element is the
+          oversized Bebas hero headline (TOE.KNEE.SEE); without this the font
+          is only discovered after CSS parse. Href matches the @font-face src
+          re-declared against /fonts in globals.css, so the preload is used.
+        */}
+        <link
+          rel="preload"
+          as="font"
+          type="font/ttf"
+          href="/fonts/BebasNeue-Regular.ttf"
+          crossOrigin="anonymous"
+        />
         <meta name="color-scheme" content="dark light" />
         <link rel="canonical" href="https://tony.24w.in" />
         <link rel="sitemap" href="/sitemap.xml" />

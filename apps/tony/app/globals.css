@@ -1,5 +1,21 @@
 /* Color and type system (imported via tokens.css in layout.tsx) */
 
+/* LCP fix: re-declare the Bebas @font-face against the STABLE public path
+   (/fonts/...) rather than the bundler-hashed media URL. This lets the
+   <link rel="preload"> in layout.tsx point at the exact same URL the
+   font-face resolves to, so the preload is used (no double-fetch) and the
+   build-stable href never goes stale. Keeps display:swap + the metric
+   overrides that prevent CLS on the oversized hero/stamp. */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 95%;
+  ascent-override: 90%;
+}
+
 html {
   scroll-behavior: smooth;
 }

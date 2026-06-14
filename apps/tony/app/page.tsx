@@ -5,6 +5,7 @@ export default function Home() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Nav />
 
+      <main>
       {/* Hero Section — content anchored bottom-left (stamp Rule 03);
           the 01 stamp bleeds the top-right edge as the largest element
           (Rules 01/06). Not centered. */}
@@ -240,6 +241,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

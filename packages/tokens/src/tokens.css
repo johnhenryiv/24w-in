@@ -132,6 +132,10 @@
   --brand-hover:  #ff1a7e;
   --brand-legacy: #d946a8; /* guidebook's original "magenta" */
   --brand-glow:   rgba(232, 0, 107, 0.30);
+  /* Foreground for text/icons sitting ON a --brand fill (primary button).
+     Light on-accent: white-on-#e8006b ≈ 4.53:1 clears AA (4.5) for normal
+     text. (--text-inv #0e0d0c on --brand was 4.29:1 — failed.) */
+  --on-brand:     #f5f4f0;
 
   /* Category accents — used as SIGNAL, not decoration.
      Each maps to one stamp "mode". */
@@ -180,6 +184,9 @@
   --brand-hover:  #e8006b;
   --brand-legacy: #b13d88;
   --brand-glow:   rgba(193, 0, 90, 0.20);
+  /* white-on-#c1005a ≈ 5.6:1 — clears AA comfortably on the light theme's
+     darkened accent. */
+  --on-brand:     #f5f4f0;
 
   --c-number:  #c1005a;
   --c-verb:    #1d4ed8;
