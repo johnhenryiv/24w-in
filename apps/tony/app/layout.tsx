@@ -41,6 +41,17 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
+        {/*
+          Pre-paint theme sync. Runs before first paint to set data-theme from
+          the persisted preference (24w-theme), falling back to the SSR default
+          ("dark"). Prevents a flash of the wrong theme and the hydration
+          mismatch that would otherwise occur once Nav reconciles to storage.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('24w-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`,
+          }}
+        />
         <meta charSet="utf-8" />
         <meta name="color-scheme" content="dark light" />
         <link rel="canonical" href="https://tony.24w.in" />

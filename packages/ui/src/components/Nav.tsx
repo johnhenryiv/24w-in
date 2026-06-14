@@ -5,7 +5,15 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const THEME_STORAGE_KEY = '24w-theme';
+
+type Theme = 'light' | 'dark';
+
+function isTheme(value: string | null | undefined): value is Theme {
+  return value === 'light' || value === 'dark';
+}
 
 interface NavLink {
   label: string;
@@ -14,8 +22,8 @@ interface NavLink {
 
 interface NavProps {
   links?: NavLink[];
-  onThemeToggle?: (theme: 'light' | 'dark') => void;
-  currentTheme?: 'light' | 'dark';
+  onThemeToggle?: (theme: Theme) => void;
+  currentTheme?: Theme;
 }
 
 export function Nav({
@@ -28,10 +36,32 @@ export function Nav({
   onThemeToggle,
   currentTheme = 'dark',
 }: NavProps) {
-  const [theme, setTheme] = useState<'light' | 'dark'>(currentTheme);
+  const [theme, setTheme] = useState<Theme>(currentTheme);
+
+  // After hydration, sync the button's state from the actual DOM/localStorage.
+  // The pre-paint inline script in <head> is the source of truth for what the
+  // user is actually looking at; reconcile to it so the icon never lies.
+  useEffect(() => {
+    const stored = typeof window !== 'undefined' ? localStorage.getItem(THEME_STORAGE_KEY) : null;
+    const domTheme = document.documentElement.dataset.theme;
+    const actual: Theme = isTheme(stored) ? stored : isTheme(domTheme) ? domTheme : 'dark';
+    setTheme(actual);
+  }, []);
 
   const handleThemeToggle = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    // Read current theme from the DOM (the rendered source of truth),
+    // default to 'dark' when unset.
+    const domTheme = document.documentElement.dataset.theme;
+    const current: Theme = isTheme(domTheme) ? domTheme : 'dark';
+    const newTheme: Theme = current === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+    } catch {
+      // localStorage can throw in private/blocked contexts — theme still applies for the session.
+    }
+
     setTheme(newTheme);
     onThemeToggle?.(newTheme);
   };
