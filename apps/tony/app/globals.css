@@ -5,10 +5,14 @@
    <link rel="preload"> in layout.tsx point at the exact same URL the
    font-face resolves to, so the preload is used (no double-fetch) and the
    build-stable href never goes stale. Keeps display:swap + the metric
-   overrides that prevent CLS on the oversized hero/stamp. */
+   overrides that prevent CLS on the oversized hero/stamp.
+   woff2 first (subsetted Latin+numerals+punctuation, ~12.7KB) with the
+   TTF as a fallback for any UA without woff2 support. The preload in
+   layout.tsx points at the woff2 to match the primary src exactly. */
 @font-face {
   font-family: 'Bebas Neue';
-  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+  src: url('/fonts/BebasNeue-Regular.woff2') format('woff2'),
+       url('/fonts/BebasNeue-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
