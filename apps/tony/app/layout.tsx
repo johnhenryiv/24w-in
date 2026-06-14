@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import './tokens.css';
+// Canonical design tokens — single source of truth (packages/tokens).
+// tokens.css first (surfaces, type scale, theme blocks, font-face),
+// then colors_and_type.css (semantic roles + --track-* tracking tokens).
+import '@24w/tokens/css';
+import '@24w/tokens/css/type';
 import './globals.css';
 
 export const viewport: Viewport = {

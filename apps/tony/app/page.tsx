@@ -1,34 +1,35 @@
-import { Nav, Footer, Button, StampCard, Stamp, CTA } from '@24w/ui';
+import { Nav, Footer, Button, StampCard, Stamp } from '@24w/ui';
 
 export default function Home() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Nav />
 
-      {/* Hero Section */}
+      {/* Hero Section — content anchored bottom-left (stamp Rule 03);
+          the 01 stamp bleeds the top-right edge as the largest element
+          (Rules 01/06). Not centered. */}
       <section
         style={{
           position: 'relative',
           minHeight: '100vh',
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: 'flex-end',
+          justifyContent: 'flex-start',
           backgroundColor: 'var(--bg)',
           overflow: 'hidden',
           padding: 'var(--space-12)',
         }}
       >
+        {/* Stamp bleeds off the top-right: a negative offset clips the glyph
+            past the viewport edge so it reads as the largest element. */}
         <Stamp
           text="01"
           category="number"
           opacity="min"
-          style={{ top: '10%', right: '5%' }}
+          style={{ top: '-6%', right: '-4%', fontSize: 'clamp(8rem, 38vw, 28rem)' }}
         />
 
         <div style={{ maxWidth: '60ch', textAlign: 'left', position: 'relative', zIndex: 1 }}>
-          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: '0 0 var(--space-3) 0' }}>
-            Identity line
-          </p>
           <h1 style={{ fontSize: 'var(--text-hero)', margin: '0 0 var(--space-4) 0' }}>
             TOE.KNEE.SEE
           </h1>
@@ -53,38 +54,46 @@ export default function Home() {
             Selected Work
           </h2>
 
+          {/* Bento, not a symmetric auto-fit grid (§11 rule 6 — vary the
+              layout). The featured card spans both columns. */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gridTemplateColumns: 'repeat(2, 1fr)',
               gap: 'var(--space-8)',
             }}
           >
             {[
-              { stamp: '01', title: 'myPKA', context: 'Personal knowledge system', tag: 'PKM' },
-              { stamp: '02', title: 'SETT.LIFE', context: 'Movement ecology platform', tag: 'Platform' },
+              { stamp: '01', title: 'myPKA', context: 'Personal knowledge system', tag: 'PKM', featured: true },
+              { stamp: '02', title: 'SETT.LIFE', context: 'Movement ecology platform', tag: 'Platform', featured: false },
               {
                 stamp: '03',
                 title: '24W.IN',
                 context: 'Multi-property site ecosystem',
                 tag: 'System',
+                featured: false,
               },
               {
                 stamp: '04',
                 title: 'mySETT.LOG',
                 context: 'Movement journaling + analytics',
                 tag: 'Web App',
+                featured: false,
               },
             ].map((item) => (
-              <StampCard
+              <div
                 key={item.stamp}
-                stamp={item.stamp}
-                stampCategory="number"
-                title={item.title}
-                context={item.context}
-                tag={item.tag}
-                href={`/work/${item.stamp}`}
-              />
+                style={item.featured ? { gridColumn: 'span 2' } : undefined}
+              >
+                <StampCard
+                  stamp={item.stamp}
+                  stampCategory="number"
+                  title={item.title}
+                  context={item.context}
+                  tag={item.tag}
+                  href={`/work/${item.stamp}`}
+                />
+              </div>
             ))}
           </div>
         </div>

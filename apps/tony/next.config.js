@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Transpile the workspace design-system packages so their CSS (and the
+  // @font-face url() references in @24w/tokens) are processed by Next.
+  transpilePackages: ['@24w/tokens', '@24w/ui'],
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

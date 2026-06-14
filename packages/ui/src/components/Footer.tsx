@@ -48,7 +48,7 @@ export function Footer({ year = new Date().getFullYear(), className = '' }: Foot
           </a>
         </div>
 
-        <p style={{ margin: 0, color: 'var(--text-faint)' }}>© {year} 24W.IN</p>
+        <p style={{ margin: 0, color: 'var(--text-muted)' }}>© {year} 24W.IN</p>
       </div>
     </footer>
   );
