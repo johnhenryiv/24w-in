@@ -62,8 +62,8 @@ export default function RootLayout({
         <link
           rel="preload"
           as="font"
-          type="font/ttf"
-          href="/fonts/BebasNeue-Regular.ttf"
+          type="font/woff2"
+          href="/fonts/BebasNeue-Regular.woff2"
           crossOrigin="anonymous"
         />
         <meta name="color-scheme" content="dark light" />
